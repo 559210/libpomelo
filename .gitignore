@@ -10,6 +10,16 @@
 *.so
 *.so.*
 *.dylib
+*.sln
+*.vcproj
+*.vcxproj
+*.vcxproj.filters
+*.sdf
+*.suo
+
+UpgradeLog.htm
+Backup/
+Default/
 
 # Executables
 *.exe
