@@ -215,7 +215,7 @@ static int pc__handshake_ack(pc_client_t *client) {
   return 0;
 
 error:
-  if(buf.len != -1) free(buf.base);
+  if(buf.len != -1) pc_jsonp_free(buf.base);
   return -1;
 }
 
@@ -225,9 +225,9 @@ static void pc__handshake_req_cb(uv_write_t* req, int status) {
   pc_client_t *client = transport->client;
   char *base = (char *)data[1];
 
-  free(base);
-  free(data);
-  free(req);
+  pc_jsonp_free(base);
+  pc_jsonp_free(data);
+  pc_jsonp_free(req);
 
   if(PC_TP_ST_WORKING != transport->state) {
     fprintf(stderr, "Invalid transport state for handshake req cb: %d.\n",
@@ -253,9 +253,9 @@ static void pc__handshake_ack_cb(uv_write_t* req, int status) {
   pc_client_t *client = transport->client;
   char *base = (char *)data[1];
 
-  free(base);
-  free(data);
-  free(req);
+  pc_jsonp_free(base);
+  pc_jsonp_free(data);
+  pc_jsonp_free(req);
 
   if(PC_TP_ST_WORKING != transport->state) {
     fprintf(stderr, "Invalid transport state for handshake ack cb: %d.\n",
