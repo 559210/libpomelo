@@ -42,3 +42,5 @@ deps/uv/uv.Makefile
 Makefile
 tags
 Makefile
+
+deps/jansson/win32
