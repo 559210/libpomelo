@@ -39,11 +39,12 @@ int pc__handshake_req(pc_client_t *client) {
   json_object_set(sys, "type", json_type);
   json_object_set(sys, "version", json_version);
 
-  json_t *proto;
+  json_t *proto = NULL;
   if(!client->proto_ver) {
     pc__load_file(client, PC_PROTO_VERSION, &proto);
     if(proto) {
       client->proto_ver = json_object_get(proto, PC_PROTO_VERSION);
+      json_incref(client->proto_ver);
       json_object_set(sys, PC_PROTO_VERSION, client->proto_ver);
     }
   } else {

@@ -64,7 +64,7 @@ pc_client_t *pc_client_new_with_reconnect(int delay, int delay_max, int exp_back
   if(!client->enable_exp_backoff){
     client->max_reconnects_incr = client->reconnect_delay_max / client->reconnect_delay + 1;
   } else {
-    client->max_reconnects_incr = (int)log(1.0 * client->reconnect_delay_max / client->reconnect_delay) / log((float)2) + 1;
+    client->max_reconnects_incr = (int)log(1.0 * client->reconnect_delay_max / client->reconnect_delay) / log(2.0) + 1;
   }
   /* uv_timer_init never fail */
   uv_timer_init(client->uv_loop, &client->reconnect_timer); 
